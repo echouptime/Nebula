@@ -1,0 +1,71 @@
+name = "python"
+"""
+首字母大写
+"""
+print(name.capitalize())
+#统计字符串出现的次数
+print(name.count("o"))
+#打印50个-
+print(name.center(50,"-"))
+
+Email = "12345678@163.com"
+# 判断字符串是否意.com结尾
+print(Email.endswith(".com"))
+# 查找.在字符串中的索引
+print(Email.find("."))
+#字符串切片
+print(Email[Email.find("."):-8])
+
+# format格式化
+info = "My name is {name}"
+print(info.format(name="zhangsan"))
+# 传字典
+print(info.format_map({"name":"lisi"}))
+
+# 判断是否为阿拉伯数字
+print(info.isalnum())
+# 是否为纯英文数字
+info_v1 = "This"
+print(info_v1.isalpha())
+# 判断是否为整数
+print("123".isdigit())
+# 判断是否为合法标识符
+print("string".isidentifier())
+#判断是否为整数
+print("22".isnumeric())
+# 判断是否为title
+print("Python Is Code".istitle())
+# 判断是否为大写
+print("Python".isupper())
+# 连接字符串
+print("+".join(['1','2','3']))
+#
+print(info_v1.ljust(50,"#"))
+print(info_v1.rjust(50,"&"))
+string = "ETCD"
+# 字符串转小写
+print(string.lower())
+# 字符串转小写
+print(string.upper())
+
+# 分别从左右去空格
+print('\nETCD'.lstrip())
+print('ETCD\n'.rstrip())
+print('\nETCD\n'.strip())
+# 字符串替换
+print("Docker".replace("r","R"))
+#从左边找字符串对应索引
+print("Docker".rfind("o"))
+# 指定分隔符，提取字符串
+print("key:vaule".split(":"))
+#
+print("1+2\n3+4".splitlines())
+#  小写变大写
+print("etcd".swapcase())
+
+# 是否以is结尾
+print("F is".endswith("is"))
+# 是否以F开头
+print("F is ".startswith("F"))
+
+
