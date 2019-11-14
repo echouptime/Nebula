@@ -43,6 +43,7 @@ product_list = [
     ("Air Pods", 1500),
     ("枸杞", 10),
 ]
+
 salary = input("Please input salary: ")
 if salary.isdigit():
     salary = int(salary)
@@ -60,10 +61,16 @@ while True:
     if user_choice.isdigit():
         user_choice = int(user_choice)
         """
-        判断用户输入数字小于列表长度并且用户输入数字大于-1则执行下面的逻辑
+        判断用户输入数字小于列表长度并且用户输入数字大于-1则执行下面的逻辑，不满足该逻辑则输出该商品不存在
         """
         if user_choice < len(product_list) and user_choice>-1:
+            """
+            获取商品信息
+            """
             p_list = product_list[user_choice]
+            """
+            判断商品价格小于用户工资则加将商品加入购买列表中，然后扣除相应金额
+            """
             if p_list[1] <salary:
                 shop_list.append(p_list)
                 salary -= p_list[1]
@@ -72,6 +79,9 @@ while True:
                 print(color.red("您的余额为 %s，购买商品%s失败") % (salary,user_choice))
         else:
             print(color.red("商品%s不存在" % (user_choice)))
+            """
+            判断用户输入等于q则打印商品列表，退出程序
+            """
     elif user_choice == "q":
         print("###################shopping list########################")
         for slist in shop_list:
