@@ -1,0 +1,75 @@
+#coding:utf-8
+"""
+get username and password info
+"""
+import os
+dict_list = {}
+dict_list.clear()
+"""
+1.读取和密码信息
+2.将空格替换为逗号
+3.将userinfo信息以逗号分隔
+4.循环userinfo信息以冒号分隔，并将用户名和密码信息写入字典
+"""
+with open("user_name","r" )as f:
+    userinfo = f.read().replace("\n",",")
+    userinfo = userinfo.split(",")
+    for i in userinfo:
+        # print(i)
+        username,password = i.split(":")
+        dict_list[username]=password
+
+"""
+判断锁文件不存在，则创建lock文件并写入
+"""
+if not os.path.exists("lock"):
+    with open("lock","w") as f:
+        f.write("\n")
+"""
+读取锁文件信息并赋值给lock_username
+"""
+with open("lock","r") as f:
+    lock_username = f.read()
+    lock_username = lock_username.split("\n")
+
+"""
+用户登录失败重试三次
+"""
+for i in range(3):
+    uname = input("Please input username: ")
+    passwd = input("Please input password: ")
+    """
+    判断即将登录用户名是否在锁文件中，存在则打印该用户已被锁定，退出程序
+    """
+    if uname in lock_username:
+        print("该账户已被锁定,程序退出")
+        break
+    if uname in dict_list.keys() and passwd == dict_list.get(uname):
+        print("Welcome to web site")
+        break
+    else:
+        """
+        判断即将登录用户名在字典中,则打印登录失败并重试三次，将用户名写入锁文件
+        """
+        if uname in dict_list.keys():
+            print("User name and password validation failed")
+            if i ==2:
+                with open("lock","a") as f:
+                    f.write(uname)
+                    print("重试超过三次，账号已锁定")
+        else:
+            """
+            用户名不在该字典中，则让用户选择是否要注册新用户，输入Y 将用户名和密码写入密码文件，输入N则退出程序
+            """
+            restry = input("Need to register account?input Y OR N")
+            if restry == "Y":
+                with open("user_name",'a')as f:
+                    f.write("\n")
+                    f.write(uname +":"+ passwd)
+                    print("register successful")
+                    break
+            elif restry == "N":
+                print("exit code.....")
+                break
+            else:
+                print("Please input Y or N")
