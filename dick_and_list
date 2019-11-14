@@ -1,0 +1,133 @@
+# #字符串转换为二进制 encode
+# msg = "我爱北京天安门"
+# print(msg.encode("utf-8"))
+# print(msg.encode("utf-8").decode())
+"""
+#列表，从左往右取
+name = ["etcd","docker","mysql","lvs"]
+#取索引为1,2的值.切片
+print(name[1:3])
+print(name[0:3])
+print(name[0:4])
+#取最后一个值
+print(name[-1])
+print(name[-2:-1])
+#打印前3个
+print(name[:3])
+#添加到后面
+name.append("etcd")
+#数据插入到指定位置
+name.insert(4,"redis")
+
+#删除
+name.remove("lvs")
+name.pop(3)
+del name[2]
+name[1] = "lvs_cluster"
+print(name)
+
+#查找索引
+print(name.index("lvs_cluster"))
+print(name[name.index("nginx")])
+
+#统计次数
+print(name.count("nginx"))
+print(name)
+"""
+"""
+#翻转
+names = ["mongodb","pika","qbus","gateway"]
+print(names)
+names.reverse()
+print(names)
+#排序
+names.sort()
+print(names)
+#扩展
+name2 = [1,2,3,4]
+names.extend(name2)
+print(names)
+"""
+"""
+names = ["lvs","keepalived","ipvsadm",["v1","v2"],"logstach"]
+print(names)
+name2 = names.copy()
+print(name2)
+names[0]="杨旭"
+names[3][0] = "test1"
+print(names)
+#复制出来的列表没改
+print(name2)
+
+
+import copy
+#肾copy
+name2 = copy.deepcopy(names)
+"""
+"""
+names = ["rip","bgp","ospf","ecmp"]
+#0:-1打印字典所有内容,2为步长
+print(names[0:-1:2])    #print(names[::2]) 等同于
+
+#打印列表
+for list in names:
+    print(list)
+"""
+
+#元组,值不能被改变
+name = ('kibana','logstach')
+print(name.count("logstach"))
+print(name.index("kibana"))
+
+
+#定义两个空列表
+list_even = []
+list_odd = []
+##偶数写入list_even列表，奇数写入list_odd列表
+for i in range(0,100):
+    if i % 2 <= 0:
+        list_even.append(i)
+    elif i % 2 >= 1:
+        list_odd.append(i)
+
+# 取字典中某一个值
+print(list_even.pop(10))
+#统计列表中字符串出现的次数
+print(list_even.count(98))
+#清除列表
+# print(list_even.clear())
+# 扩展列表
+list_odd.extend(list_even)
+# 2查找内容，1,5索引之间
+print(list_even.index(2,1,5))
+# 在第二个索引后面加10
+list_even.insert(2,10)
+# 删除列表中的元素
+list_even.remove(30)
+print(list_even)
+info_list = {
+    "name":"Hike",
+    "age":"18",
+    "sex":"NAN"
+}
+# 删除一个key，value
+info_list.pop("age")
+# 获取key对应的value值
+print(info_list.get("name"))
+# 清除字典
+print(info_list.clear())
+# 写字典
+info_list["name"] = "Hike"
+info_list["age"] = 18
+info_list["sex"] = "NAN"
+# 复制字典
+info_list_v1 = info_list.copy()
+# 合并字典
+info_list_v1.update(info_list)
+#答应字典key&value
+print(info_list.keys())
+print(info_list.values())
+
+if "job" is not info_list.keys():
+    info_list["job"] = "system_administrator"
+    print("工作类别：%s"%info_list.get("job"))
