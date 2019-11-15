@@ -187,3 +187,100 @@ print(new_dict_n1)
 str5='+'.join(['1','2'])
 print(str5)
 
+# 用id()函数来查看对象的唯一识别号,发现a,b是一样的,原因是因为b只是a的引用，都是同一个地址，并没有实现真正的copy
+a_n1 = [4,5,6]
+b = a_n1
+b.append(7)
+print(id(a_n1),a_n1)
+print(id(b),b)
+"""
+2626740480712 [4, 5, 6, 7]
+2626740480712 [4, 5, 6, 7]
+"""
+# 列表copy
+import copy
+a_n2 = [8,9,10]
+b_n1 = copy.copy(a_n2)
+print(id(a_n2),a_n2)
+print(id(b_n1),b_n1)
+"""
+内存地址发生变化
+2564033900424 [8, 9, 10]
+2564033900744 [8, 9, 10]
+"""
+# 字典缺省值设置
+aDict={}.fromkeys(('aa','bb','cc'),100)
+bDict={}.fromkeys(("ee","ff","gg"),100)
+for k,v in bDict.items():
+    print(k,v)
+"""
+ff 100
+ee 100
+gg 100
+"""
+# 获取字典 中元素，不存在则返回默认值
+cDict = {}.fromkeys(("Tom","Jack","Mike"),100)
+print(cDict.get("Tom","Not Found"))
+print(cDict.get("Test","Not Found"))
+"""
+100
+Not Found
+"""
+# 列表的下标是负数的[-len,len),切记切记
+a_n3 = ["Apple","Mac","Book"]
+for index,vaule in enumerate(a_n3):
+    if index<3:
+        print(index)
+"""
+0
+1
+2
+"""
+# 循环访问序列中的元素和索引
+# 比如我们要把列表中的10替换成3,解决方案:
+a_n4=[1,2,10,4]
+for index,item in enumerate(a_n4):
+    if item>9:
+        a_n4[index]=3
+print(a_n4)
+"""
+[1, 2, 3, 4]
+"""
+# 使用字典格式化字符串
+aInfo={'Wangdachui':3000,'NiuYun':2000,'LinLing':4500,'Tianqi':8000}
+template='''
+Welcome to the pay wall.
+NiuYun' salary is %(NiuYun)s.
+Wangdachui's salary is %(Wangdachui)s.
+'''
+print(template%aInfo)
+# daemon 02 %(xxx)s 固定格式
+user_info = {"name":"Tom","age":"18","salary":"10000"}
+aaa = '''
+username:%(name)s
+userage:%(age)s
+usersalary:%(salary)s
+'''
+print(aaa%user_info)
+"""
+username:Tom
+userage:18
+usersalary:10000
+"""
+
+# 字典的更新
+aInfo={'Wang':3000,'NiuYun':2000,'Lin':4500,'Tianqi':8000}
+bInfo={'Wang':4000,'NiuYun':8000,'Ming':3300}
+aInfo.update(bInfo)
+print(aInfo)
+"""
+{'Lin': 4500, 'NiuYun': 8000, 'Ming': 3300, 'Wang': 4000, 'Tianqi': 8000}
+"""
+
+# 找到两个字典的相同的内容
+a_n5={"aa":100,"bb":200,"cc":300}
+a_n6={"aa":100,"bb":300,"cc":300}
+print(set(a_n5.items()) & set(a_n6.items()))
+"""
+{('aa', 100), ('cc', 300)}
+"""
