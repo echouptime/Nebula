@@ -61,7 +61,7 @@ print(name2)
 
 
 import copy
-#肾copy
+#深copy
 name2 = copy.deepcopy(names)
 """
 """
