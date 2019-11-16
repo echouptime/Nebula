@@ -1,0 +1,78 @@
+#encoding=utf-8
+with open("file_01","a")as f:
+    f.write("期待今天的自己过得比昨天更美好"+"\n")
+    f.write("加油，少年")
+
+"""
+with open("file","r")as f:
+    for index,line in enumerate(f.readlines()):
+        print(line.strip())
+        if index >9 and index<20:
+            print(index,line)
+"""
+count = 0
+with open("file","r")as f:
+    # 打印初始光标,按照字符来计数
+    print(f.tell())
+    # print(f.read(5))
+    print(f.readline())
+    print(f.readline())
+    print(f.readline())
+    print(f.tell())
+    # 将光标回到指定位置
+    f.seek(24)
+    print(f.readline())
+    #打印文件字符编码
+    print(f.encoding)
+    # 返回文件在内存中的编号
+    print(f.fileno())
+    # 打印文件名
+    print(f.name)
+    # 将数据从内存中写到磁盘中
+    f.flush()
+# 读写模式，将字符串加入指定的位置，通过seek来移动光标
+with open("file_01","r+")as f:
+    # 文件截断
+    f.truncate(10)
+    f.write("期待今天的自己过得比昨天更美好" + "\n")
+    f.write("加油，少年")
+    print(f.tell())
+    f.write("期待今天的自己过得比昨天更美好" + "\n")
+    f.write("加油，少年""\n")
+    f.write("-----------------1-----------------"+ "\n")
+    f.write("-----------------2-----------------"+ "\n")
+    f.write("-----------------3-----------------"+ "\n")
+    f.write("-----------------4-----------------"+ "\n")
+    print(f.tell())
+    f.seek(10)
+    print(f.readlines())
+
+
+# flush将数据每s一次刷入到磁盘
+import sys,time
+for i in range(100):
+    sys.stdout.write("#")
+    sys.stdout.flush()
+    time.sleep(0.1)
+"""
+####################################################################################################
+"""
+
+"""
+修改文件内容
+"""
+f = open("file_02","r")
+new_f = open("file_03","w")
+"""
+# 没有匹配到的内容也写到新文件，匹配到的内容替换后写入的新文件
+循环旧文件，判断字符串在旧文件中使用replace将字符串替换为修改后的内容写到文件中
+"""
+for line in f:
+    if "让我们给世界点火" in line:
+        line = line.replace("让我们给世界点火","让我们给世界点把大火-----")
+        new_f.write(line)
+    else:
+        new_f.write(line)
+f.close()
+new_f.close()
+
