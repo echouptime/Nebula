@@ -1,0 +1,179 @@
+#encoding=utf-8
+# 定义函数
+def fun(x):
+    """
+    print hello world
+    :return:
+    """
+    print(x)
+
+
+def fun1(x):
+    """
+    print hello world
+    :return:
+    """
+    a = x
+    return a
+# 调用函数
+x = fun("haha")
+y = fun1("hehe")
+print("This is %s"%x)
+print("This is %s"%y)
+"""
+This is None
+This is hehe
+"""
+import datetime,time
+def logger():
+    with open("def_example","a+")as f:
+        f.write("%s end action"%(datetime.datetime.now()))
+
+def test1():
+    print("in the test1")
+    logger()
+def test2():
+    print("in the test1")
+    logger()
+def test3():
+    print("in the test1")
+    logger()
+
+# 函数可以返回任何指，默认返回None，return多个值则统一返回一个元组
+
+#位置调用
+def sum(x,y):
+    s = x+y
+    a = x -y
+    z = x * y
+    return s,a,z
+sum = sum(1,6)
+print(sum)
+"""
+(7, -5, 6)
+"""
+
+# 关键字调用
+def info(name,age):
+    name=name
+    age=age
+    new_list = []
+    new_list.append(name)
+    new_list.append(age)
+    return new_list
+print(info("Tom","18"))
+"""
+['Tom', '18']
+"""
+# 默认参数特点，调用函数的时候，默认参数非必须传递
+def info_v1(x,y=5):
+    c=x+y
+    return c
+print(info_v1(3))
+
+
+# *args 接受N个位置参数，转换为元组
+def info_v2(x,*args):
+    info_v2 = args
+    return info_v2
+print(info_v2(1,2,3,4,5))
+# 传列表
+print(info_v2(*[1,2,3,4,5,6]))
+
+# **kwargs 接受N个关键字参数，返回字典的形式
+def info_v3(**kwargs):
+    info_v3 = kwargs
+    return info_v3
+print(info_v3(name="Tom",age="18"))
+print(info_v3(**{"name":"Jack","Age":'20',"Sex":"Nan"}))
+"""
+{'name': 'Tom', 'age': '18'}
+{'name': 'Jack', 'Age': '20', 'Sex': 'Nan'}
+"""
+
+def info_v4(name,age=18,**kwargs):
+    print(name)
+    print(age)
+    print(kwargs)
+    return name,age,kwargs
+print(info_v4(name="Mile",age=22,sex="F",salary="10000"))
+"""
+# 无return
+{'salary': '10000', 'sex': 'F'}
+# return值
+('Mile', 22, {'salary': '10000', 'sex': 'F'})
+"""
+
+def info_v5(name,age=18,*args,**kwargs):
+    print(name)
+    print(age)
+    print(args)
+    print(kwargs)
+info_v5(name="Him",age=22,salary=1000,sex="F")
+"""
+()
+{'sex': 'F', 'salary': 1000}
+"""
+
+import datetime,time
+def logger():
+    with open("def_example","a+")as f:
+        f.write("%s end action"%(datetime.datetime.now()) +'\n')
+
+def test1():
+    print("in the test1")
+    logger()
+def test2():
+    print("in the test1")
+    logger()
+def test3():
+    print("in the test1")
+    logger()
+test1()
+test2()
+test3()
+
+#encoding=utf-8
+# 局部变量只在函数里生效，这个函数就是这个变量的作用域
+school="Oldboy"
+def change_name(name):
+    # 使用global引入全局变量进行修改
+    global school
+    school="Change_Oldboy"
+    print("before change name",name,school)
+    name= "TOM"
+    print("after change name",name,school)
+
+name="tom"
+change_name(name)
+print(name)
+print(school)
+"""
+before change name tom Change_Oldboy
+after change name TOM Change_Oldboy
+tom
+Change_Oldboy
+"""
+
+# 递归函数  每次递归必须有明确的结束条件， 每次递归后的取值范围应该逐渐缩小
+def calc(n):
+    print(n)
+    if int(n/2) >0:
+        return calc(int(n/2))
+
+calc(10)
+"""
+10
+5
+2
+1
+"""
+
+# 高阶函数 abs函数
+def add(a,b,f):
+    return f(a)+f(b)
+res = add(3,6,abs)
+print(res)
+"""
+9
+"""
