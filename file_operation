@@ -76,3 +76,97 @@ for line in f:
 f.close()
 new_f.close()
 
+
+
+
+with open('abc1125')as f:
+    with open('abc1126','w')as d:
+
+        contents = f.readlines()
+        for i in range(0,len(contents)):
+            contents[i]=str(i+1)+':'+contents[i]
+            print(contents)
+            d.writelines(contents)
+# 读文件函数
+def read_file():
+    with open('abc1125','r')as f:
+        read_lines_from=f.readlines()
+        return read_lines_from
+# 写文件函数
+def wirte_file(content):
+    with open('abc1126',"w")as f:
+        f.writelines(content)
+# 定义一个新的文件列表
+new_lines = []
+# 循环打印读取文件的下标和内容
+for index,line in enumerate(read_file()):
+    # 将文件和下标写入到new_lines的列表中
+    new_lines.append(str(index)+":"+line)
+# 调用wwirte_file函数写入new_lines列表
+wirte_file(new_lines)
+
+#文件重命名
+import os
+def rename_files():
+    file_list = os.listdir('D:\/untitled/\learing/\day_04')
+    for file_name in file_list:
+        if file_name.endswith('abcd123.txt'):
+            print(file_name)
+            os.rename(file_name,'abc.txt')
+rename_files()
+
+# 用函数的方案替换文件内容并写入新文件
+def read_file(filename):
+    with open(filename,'r')as f:
+        return f.readlines()
+def wirte_file(filename,line):
+    with open(filename,'a+')as f:
+        f.writelines(line)
+# read_file = read_file("test_01.txt")
+for line in read_file("test_01.txt"):
+    if "Java" in line:
+        i = line.replace("Java","Python")
+        wirte_file('test_03.txt',i)
+    else:
+        wirte_file('test_03.txt',line)
+
+
+#将txt结尾的文件挪到backup目录
+import shutil,os
+if not os.path.dirname("backup"):
+    os.mkdir("backup")
+for file in os.listdir('.'):
+    if os.path.splitext(file)[1]=='.txt':
+        shutil.copy(file,os.path.join('backup',file))
+
+#函数方法实现
+import shutil,os
+def mv_backup(name):
+    if not os.path.dirname("backup"):
+        os.mkdir("backup")
+    for file in os.listdir('.'):
+        if os.path.splitext(file)[1] == name:
+            shutil.copy(file, os.path.join('backup', file))
+mv_backup('.txt')
+
+# 复制目录
+import shutil,os
+shutil.copytree('backup', 'backup2')
+
+# 删除目录,当目录不为空的时候，无法删除
+os.remove("backup2")
+
+# 使用shutil模块可以强制删除目录
+shutil.rmtree("backup2")
+
+
+
+# 异常处理
+"""
+try:
+#   没有匹配到异常则执行此代码块的逻辑
+except
+#     匹配到异常执行此代码块的逻辑
+finally:
+#   上述两块逻辑处理完都会执行此逻辑
+"""
