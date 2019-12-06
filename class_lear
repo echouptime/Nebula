@@ -1,0 +1,157 @@
+#encoding=utf-8
+# 经典类
+class Oldstyle:
+    """
+    describe
+    """
+
+# 新式类
+class Object(object):
+    """
+    describe
+    """
+
+# 如果说类是一种数据结构定义的类型，那么实例就是声明这种类型的变量
+class People(object):
+    name = "wang"
+    age = 33
+    def __init__(self,name,age):
+        """
+        初始化类的对象
+        :param name:
+        :param age:
+        """
+        self.name = name
+        self.age = age
+
+
+    def __del__(self):
+        """
+        删除类的对象
+        :return:
+        """
+        del self.name
+
+    def info(self):
+        print("name: ",self.name)
+        print("age: ",self.age)
+
+t1 = People('yangxu','18')
+t1.info()
+
+
+class Student(object):
+    name = "zhangsan"
+    age = 25
+
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+# 初始化对象实例1
+s1 = Student('li','18')
+print(s1.name,s1.age)
+
+# 初始化对象实例2
+s1 = Student('Mile','20')
+print(s1.name,s1.age)
+# 类变量未被改变
+print(Student.name,Student.age)
+
+"""
+li 18
+Mile 20
+zhangsan 25
+"""
+
+"""
+类中的方法
+1.实例方法
+2.类的方法
+3.类的静态函数
+"""
+
+class car(object):
+    def __init__(self,make,module,yeal):
+        self.make = make
+        self.module = module
+        self.year = yeal
+        self.odometer_reading = 0
+
+    def get_des_name(self):
+        long_name = str(self.year) + " " + self.make + " " + self.module
+        return long_name
+
+    def fill_gas_tank(self):
+        return "This car need a gas tank!"
+
+    def read_odometer(self):
+        print("This car has %s miles on it "%(str(self.odometer_reading)))
+
+    def update_odometer(self,mileage):
+        # 判断100大于0，则赋值给odometer_reading
+        if mileage >= self.odometer_reading:
+            self.odometer_reading=mileage
+        else:
+            print("Your can't roll back an odometer!")
+
+class Electric_car(car):
+    """
+    使用super方法来继承父类的方法
+    super()会带两个参数，第一个是子类的类名，第二个是self参数
+    """
+    def __init__(self,make,module,year):
+        super(Electric_car,self).__init__(make,module,year)
+        """
+        电池容量
+        """
+        self.battery_size = 400
+
+    def fill_gas_tank(self):
+        return "This is a tram"
+
+    def read_battery_size(self):
+        print("This is car a %s kwh battery"%(self.battery_size))
+
+
+new_car = Electric_car("tesla","modules 3","2019")
+print(new_car.get_des_name())
+new_car.read_battery_size()
+print(new_car.fill_gas_tank())
+"""
+类方法的重载
+如果我们子类有一个名字和父类一样的方法，python会自动判断对象的类型去调用对应的方法，比如我们子类里面也有一个叫fill_gas_tank的方法，会重载子类的方法
+2019 tesla modules 3
+This is car a 400 kwh battery
+This is a tram
+"""
+
+"""
+继承父类的方法和属性，并调用子类的属性
+2019 tesla modules 3
+This is car a 400 kwh battery
+"""
+
+"""
+继承了父类的属性和方法
+2019 tesla modules 3
+"""
+# my_new_car = car("audi","a4",2019)
+# print(my_new_car.get_des_name())
+# my_new_car.update_odometer(100)
+# my_new_car.read_odometer()
+
+
+"""
+类的实例方法
+"""
+class Kls(object):
+    def __init__(self,data):
+        self.data = data
+    def printd(self):
+        print(self.data)
+k1 = Kls("k1")
+k2 = Kls("k2")
+k1.printd()
+k2.printd()
+
